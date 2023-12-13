@@ -1,0 +1,25 @@
+[remap]
+
+importer="Aseprite AnimatedSprite2D Import"
+type="PackedScene"
+uid="uid://cgcb3hppog82"
+path="res://.godot/imported/Coin.aseprite-b89511f83f3dc4d4980ed39b91fdb7d8.scn"
+
+[deps]
+
+source_file="res://sprites/Coin.aseprite"
+dest_files=["res://.godot/imported/Coin.aseprite-b89511f83f3dc4d4980ed39b91fdb7d8.scn"]
+
+[params]
+
+spritesheet/layout=0
+spritesheet/fixed_rows_count=1
+spritesheet/fixed_columns_count=1
+spritesheet/border_type=0
+spritesheet/trim=false
+spritesheet/ignore_empty=false
+spritesheet/merge_duplicates=false
+animation/default/name="default"
+animation/default/direction=0
+animation/default/repeat_count=0
+animation/autoplay=""

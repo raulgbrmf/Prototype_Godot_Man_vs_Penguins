@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbve5h4gvriuv"]
+
+[ext_resource type="Texture2D" uid="uid://b6u388c5k5qew" path="res://sprites/Man-Sheet.png" id="1_s5dkv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amupc"]
+size = Vector2(137, 177.75)
+
+[sub_resource type="Animation" id="Animation_003p6"]
+resource_name = "running"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_t2nvu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4d1fx"]
+_data = {
+"RESET": SubResource("Animation_t2nvu"),
+"running": SubResource("Animation_003p6")
+}
+
+[node name="Man" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -3.87498)
+shape = SubResource("RectangleShape2D_amupc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -16)
+texture = ExtResource("1_s5dkv")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_4d1fx")
+}
