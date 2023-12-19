@@ -1,14 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://veecwxrurn5q"]
+[gd_scene load_steps=6 format=3 uid="uid://veecwxrurn5q"]
 
 [ext_resource type="Texture2D" uid="uid://bo54wrwq7qcf6" path="res://sprites/Coin.png" id="1_iwjgx"]
+[ext_resource type="Script" path="res://scenes/coin.gd" id="1_yfkug"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vs6m6"]
+bounce = 0.21
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ith2t"]
-size = Vector2(54, 78)
+size = Vector2(55, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l25rs"]
+size = Vector2(72, 84)
 
 [node name="Coin" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 11
+physics_material_override = SubResource("PhysicsMaterial_vs6m6")
+max_contacts_reported = 39
+contact_monitor = true
+can_sleep = false
+script = ExtResource("1_yfkug")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_ith2t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_iwjgx")
+
+[node name="CollisionDetection" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
+position = Vector2(-1, -7)
+shape = SubResource("RectangleShape2D_l25rs")
+debug_color = Color(0.890196, 0.294118, 0.364706, 0.419608)
+
+[connection signal="body_entered" from="CollisionDetection" to="." method="_on_collision_detection_body_entered"]

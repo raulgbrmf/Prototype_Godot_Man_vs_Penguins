@@ -22,7 +22,7 @@ func spawn(direct):
 		enemy_spawned.position = $Spot.position
 		if "DIRECTION" in enemy_spawned:
 			enemy_spawned.DIRECTION = direct
-		enemy_spawned.scale = Vector2(0.3,0.3)
+		enemy_spawned.scale = Vector2(0.2,0.2)
 		add_child(enemy_spawned)
 		$Timer.wait_time = spawn_interval
 		$Timer.start()

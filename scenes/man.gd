@@ -10,8 +10,9 @@ var is_dead: bool = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	set_name("Man")
-
+	set_name.call_deferred("Man")
+	$Node2D/Death.emitting = false
+	
 func _physics_process(delta):
 	if is_dead:
 		return
@@ -49,4 +50,8 @@ func run():
 
 func die():
 	is_dead = true
-	queue_free()
+	$AnimationPlayer.play("die")
+
+func bounce():
+	velocity.y = -200
+	
