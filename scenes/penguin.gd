@@ -50,12 +50,10 @@ func die():
 	print("die")
 
 func _on_danger_zone_body_entered(body):
-	print("danger!!")
 	if "die" in body and body.name == "Man":
 		body.die()
 
 func _on_vulnerable_zone_body_entered(body):
-	print("vulnerable!!")
 	if body.name == "Man":
 		die()
 		body.bounce()

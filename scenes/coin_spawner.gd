@@ -1,11 +1,14 @@
 extends Node2D
+class_name Coin_Spawner
 
 var coin = preload("res://scenes/coin.tscn")
 var can_spawn : bool = true
 
+signal increase_score
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawn()
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,5 +24,6 @@ func spawn():
 	add_child.call_deferred(coin_spawned)
 	
 func _on_coin_collected():
-	spawn()
 	$CollectedSound.play()
+	increase_score.emit()
+	

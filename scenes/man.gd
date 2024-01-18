@@ -2,9 +2,11 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -480.0
 
 var is_dead: bool = false
+
+signal die_signal
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -35,7 +37,7 @@ func jump():
 		velocity.y = JUMP_VELOCITY
 
 func run():
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
 		if direction == -1:
@@ -51,6 +53,7 @@ func run():
 func die():
 	is_dead = true
 	$AnimationPlayer.play("die")
+	die_signal.emit()
 
 func bounce():
 	velocity.y = -200

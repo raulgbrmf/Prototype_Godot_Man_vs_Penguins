@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/coin.gd" id="1_yfkug"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vs6m6"]
-bounce = 0.21
+bounce = 0.18
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ith2t"]
 size = Vector2(55, 78)
