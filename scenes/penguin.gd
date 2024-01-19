@@ -16,8 +16,8 @@ func _ready():
 func _physics_process(delta):
 	if is_dead:
 		return
-	handle_gravity(delta)
-	walk(DIRECTION,SPEED)
+	else:
+		handle_gravity(delta)
 
 
 func walk(direction, speed):
@@ -34,6 +34,9 @@ func walk(direction, speed):
 func handle_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		move_and_slide()
+	elif is_on_floor():
+		walk(DIRECTION,SPEED)
 
 
 func _on_change_direction():

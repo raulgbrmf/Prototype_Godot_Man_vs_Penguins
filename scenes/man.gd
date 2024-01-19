@@ -5,6 +5,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -480.0
 
 var is_dead: bool = false
+var is_frozen: bool = false
 
 signal die_signal
 
@@ -16,16 +17,16 @@ func _ready():
 	$Node2D/Death.emitting = false
 	
 func _physics_process(delta):
-	if is_dead:
+	if is_dead or is_frozen:
 		return
-		
-	# Add the gravity.
-	handle_gravity(delta)
-	# Handle Jump.
-	jump()
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	run()
+	else:
+		# Add the gravity.
+		handle_gravity(delta)
+		# Handle Jump.
+		jump()
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		run()
 
 
 func handle_gravity(delta):
@@ -53,8 +54,25 @@ func run():
 func die():
 	is_dead = true
 	$AnimationPlayer.play("die")
-	die_signal.emit()
+
+func spawn():
+	freeze()
+	$AnimationPlayer.play("spawn")
+
+func freeze():
+	is_frozen = true
+	
+func unfreeze():
+	is_frozen = false
 
 func bounce():
 	velocity.y = -200
-	
+
+
+func _on_animation_player_animation_finished(anim_name):
+	match anim_name:
+		"spawn":
+			is_dead = false
+			unfreeze()
+		"die":
+			die_signal.emit()

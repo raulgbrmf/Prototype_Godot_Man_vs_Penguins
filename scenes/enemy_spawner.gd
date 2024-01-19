@@ -17,7 +17,6 @@ func _process(_delta):
 
 func spawn(direct):
 	if can_spawn:
-		print(direct)
 		var enemy_spawned = enemy.instantiate()
 		enemy_spawned.position = $Spot.position
 		if "DIRECTION" in enemy_spawned:
