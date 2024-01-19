@@ -49,7 +49,7 @@ func _on_change_direction():
 func die():
 	is_dead = true
 	$AnimationPlayer.play("die")
-	
+	$Death.play()
 	print("die")
 
 func _on_danger_zone_body_entered(body):

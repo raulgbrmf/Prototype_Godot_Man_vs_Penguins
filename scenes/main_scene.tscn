@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://cesse0tblnsa0"]
+
+[ext_resource type="PackedScene" uid="uid://bfig76246tge3" path="res://scenes/main_menu.tscn" id="1_8u6u1"]
+[ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_l7uah"]
+[ext_resource type="PackedScene" uid="uid://byn1utigdkygn" path="res://scenes/main_stage.tscn" id="2_xxnp6"]
+
+[sub_resource type="Animation" id="Animation_v0trl"]
+resource_name = "slide_menu"
+
+[sub_resource type="Animation" id="Animation_165yp"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4bfvj"]
+_data = {
+"RESET": SubResource("Animation_165yp"),
+"slide_menu": SubResource("Animation_v0trl")
+}
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_l7uah")
+
+[node name="MainMenu" parent="." instance=ExtResource("1_8u6u1")]
+modulate = Color(1, 1, 1, 0.968627)
+
+[node name="MainStage" parent="." instance=ExtResource("2_xxnp6")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4bfvj")
+}

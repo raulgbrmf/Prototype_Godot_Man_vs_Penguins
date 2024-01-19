@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbkvc20rebgrp"]
+[gd_scene load_steps=11 format=3 uid="uid://dbkvc20rebgrp"]
 
 [ext_resource type="Script" path="res://scenes/penguin.gd" id="1_hreoe"]
 [ext_resource type="Texture2D" uid="uid://cvw3t4npmpc1e" path="res://sprites/Penguin-Sheet.png" id="1_lgx6j"]
+[ext_resource type="AudioStream" uid="uid://bamvcumrxivwg" path="res://sounds/Smash.ogg" id="3_guqt8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6cre"]
 size = Vector2(105, 192.5)
@@ -219,6 +220,9 @@ collision_mask = 3
 position = Vector2(0, -99)
 shape = SubResource("RectangleShape2D_qx5c4")
 debug_color = Color(0.188235, 0.701961, 0, 0.419608)
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_guqt8")
 
 [connection signal="change_direction" from="." to="." method="_on_change_direction"]
 [connection signal="body_entered" from="DangerZone" to="." method="_on_danger_zone_body_entered"]

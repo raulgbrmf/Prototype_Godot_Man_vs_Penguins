@@ -53,6 +53,7 @@ func run():
 
 func die():
 	is_dead = true
+	$Death.play()
 	$AnimationPlayer.play("die")
 
 func spawn():
@@ -75,4 +76,6 @@ func _on_animation_player_animation_finished(anim_name):
 			is_dead = false
 			unfreeze()
 		"die":
+			print("emit 1")
 			die_signal.emit()
+			queue_free()
